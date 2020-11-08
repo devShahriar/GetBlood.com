@@ -1,0 +1,58 @@
+body{
+  margin: 0;
+}
+
+.centered{
+  text-align: center;
+  height: 200px;
+}
+
+.wrap{
+  background-image:url(home.png);
+  background-size: cover;
+   padding-top: 200px;
+  padding-bottom: 200px;
+  height: auto;
+ 
+  
+}
+
+.segment{
+  
+  
+  height: 400px;
+  width: 185px;
+  top: 75px;
+  position: relative;
+  margin-top: 80px;
+  margin-right: 150px;
+  margin-left: 500px;
+  
+}
+.form{
+  background-color: black;
+}
+
+.card{
+  
+  
+  height: 300px;
+  width: 500px;
+  top: 12px;
+  position: relative;
+  
+  margin-top: 80px;
+  margin-right: 150px;
+  margin-left: 8px;
+
+  
+}
+.but {
+  margin-top: 100px;
+  margin-left: 250px;
+}
+.f{
+  font-style: italic;
+  font-size: 25px;
+  
+}

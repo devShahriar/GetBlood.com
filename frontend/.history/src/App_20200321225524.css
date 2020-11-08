@@ -1,0 +1,69 @@
+body{
+  margin: 0;
+}
+
+.centered{
+  text-align: center;
+  height: 200px;
+}
+
+.wrap{
+  background-image:url(b.png);
+  background-size: cover;
+  padding-top: 100px;
+  padding-bottom: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top:0px;
+  left:0px;
+  width: 100%;
+  height: 100%
+  
+ 
+  
+}
+
+.segment{
+  
+  
+ 
+  width: 150px;
+  
+  position: relative;
+  
+  
+  margin-left: 610px;
+  
+  height: 150px;
+}
+.form{
+  color: #046b85;
+}
+
+.card{
+  border: 20px solid rgb(0, 75, 88);
+ 
+
+  
+  height: 500px;
+  width:300px ;
+  top: 12px;
+  position: relative;
+  
+  margin-top: 80px;
+  margin-right: 150px;
+  margin-left: 50px;
+  
+  
+}
+.but {
+  margin-top: 100px;
+  margin-left: 250px;
+}
+.f{
+  font-style: italic;
+  font-size: 25px;
+  
+}

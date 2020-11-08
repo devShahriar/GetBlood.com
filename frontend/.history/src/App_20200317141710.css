@@ -1,0 +1,26 @@
+body{
+  margin: 0;
+}
+
+.centered{
+  text-align: center;
+  height: 200px;
+}
+
+.wrap{
+  background-image:url(home.png);
+  background-size: cover;
+  height: auto;
+  padding-bottom: 400px;
+}
+
+.segment{
+  
+  background-color: RGB(0,0,0,0.5);
+  height: 500px;
+  width: 300px;
+  top: 50px;
+  position: relative;
+  margin: 0 auto;
+  border-radius: "50px";
+}

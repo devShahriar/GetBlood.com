@@ -1,0 +1,41 @@
+body{
+  margin: 0;
+}
+
+.centered{
+  text-align: center;
+  height: 200px;
+}
+
+.wrap{
+  background-image:url(home.png);
+  background-size: cover;
+  height: auto;
+  padding-bottom: 400px;
+}
+
+.segment{
+  
+  
+  height: 500px;
+  width: 300px;
+  top: 75px;
+  position: relative;
+  margin: 0 auto;
+
+  
+}
+.card{
+  
+  
+  height: 300px;
+  width: 500px;
+  top: 120px;
+  position: relative;
+  margin-top: 200px;
+  margin-bottom: 150px;
+  margin-right: 150px;
+  margin-left: 8px;
+
+  
+}

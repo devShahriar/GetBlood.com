@@ -1,0 +1,13 @@
+.content{
+    
+    background-color: cadetblue;
+    border-radius: 25px;
+    width: 300px;
+    z-index:1000;
+}
+.i{
+    
+}
+.m{
+    z-index: -1;
+}

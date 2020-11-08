@@ -1,0 +1,17 @@
+.content{
+    
+    background-color: cadetblue;
+    border-radius: 25px;
+    width: 300px;
+    
+}
+.i{
+    z-index:1000;
+}
+.m{
+    z-index: -1;
+}
+.search{
+    margin-left: 1300px;
+    margin-right:0;
+}

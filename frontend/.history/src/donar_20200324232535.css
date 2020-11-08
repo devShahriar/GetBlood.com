@@ -1,0 +1,14 @@
+.donar-signup {
+    width: 500px;
+    margin-top:70px;
+    margin-left: 120px ;
+}
+
+@media (min-width: 350px) {
+    .donar-signup {
+    top:45px;
+    margin: 0 auto;
+    
+     
+    }
+  }
