@@ -2,19 +2,19 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import Axios from "axios";
 
-//import back from "./back.jpg";
+import back from "./back.jpg";
 import throttle from "lodash.throttle";
-//import { subscribePush } from "./signup";
+import { subscribePush } from "./signup";
 //import { subscribeUser } from './subscription';
-// { messaging } from "./init-fcm";
+ { messaging } from "./init-fcm";
 //import { sendTokenToSever, push } from "./frontToBack";
 import { bounceInLeft } from "react-animations";
 import Radium from "radium";
 import { StyleRoot } from "radium";
 import home from "./home.png";
-import "./login.css";
+import "./App.css";
 import { Divider, Form, Label, Button, Checkbox } from "semantic-ui-react";
-import MyVerticallyCenteredModal from "../Signup/signup";
+import MyVerticallyCenteredModal from "./signup";
 
 export default class Login extends React.Component {
   constructor() {

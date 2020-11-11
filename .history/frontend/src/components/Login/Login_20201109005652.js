@@ -2,19 +2,19 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import Axios from "axios";
 
-//import back from "./back.jpg";
+import back from "./back.jpg";
 import throttle from "lodash.throttle";
-//import { subscribePush } from "./signup";
+import { subscribePush } from "./signup";
 //import { subscribeUser } from './subscription';
-// { messaging } from "./init-fcm";
-//import { sendTokenToSever, push } from "./frontToBack";
+import { messaging } from "./init-fcm";
+import { sendTokenToSever, push } from "./frontToBack";
 import { bounceInLeft } from "react-animations";
 import Radium from "radium";
 import { StyleRoot } from "radium";
 import home from "./home.png";
-import "./login.css";
+import "./App.css";
 import { Divider, Form, Label, Button, Checkbox } from "semantic-ui-react";
-import MyVerticallyCenteredModal from "../Signup/signup";
+import MyVerticallyCenteredModal from "./signup";
 
 export default class Login extends React.Component {
   constructor() {
@@ -37,25 +37,25 @@ export default class Login extends React.Component {
   componentDidMount() {
     var token = null;
 
-   // messaging.usePublicVapidKey(
-   //   "BG1ADrSkecmEUxszVCuTHJO9DpPK0EZoeg3Nh5tfIIFDIeznVMHUsMzt_jqYBMP14uOTTBbdj4g-pXtjn-O39G4"
-   // );
-  //  messaging.getToken().then((current) => {
-  //    localStorage.setItem("t456", current);
+    messaging.usePublicVapidKey(
+      "BG1ADrSkecmEUxszVCuTHJO9DpPK0EZoeg3Nh5tfIIFDIeznVMHUsMzt_jqYBMP14uOTTBbdj4g-pXtjn-O39G4"
+    );
+    messaging.getToken().then((current) => {
+      localStorage.setItem("t456", current);
       //sendTokenToSever(Math.floor(Math.random() * 100),current)
-  //    push(current);
-//});
- //  messaging.onMessage((payload) => {
-  //    console.log("Message received. ", payload);
+      push(current);
+    });
+    messaging.onMessage((payload) => {
+      console.log("Message received. ", payload);
 
-   //   const options = {
-   //     body: payload.notification.body,
-  //      icon: payload.notification.icon,
-   //   };
-  //  });
-   // navigator.serviceWorker.addEventListener("message", (message) =>
-  //    console.log(message)
-  //  );
+      const options = {
+        body: payload.notification.body,
+        icon: payload.notification.icon,
+      };
+    });
+    navigator.serviceWorker.addEventListener("message", (message) =>
+      console.log(message)
+    );
   }
   onChange = (ev) => {
     this.setState({

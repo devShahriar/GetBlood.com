@@ -4,12 +4,12 @@ import Login from './components/Login/Login'
 import Map from './components/Map/Map.js'
 import Dashboard from './components/Dashboard/dashboard';
 import signup from './components/Signup/signup'
-import Home from './components/Home/Home'
-//import home from './home.png'
+import Home from './Home'
+import home from './home.png'
 import './App.css'
 import DonarSignup from './DonarSignup';
 import userSignup from './userSignup';
-
+import WebCamera from './W';
 function App () {
   
     return (
@@ -23,7 +23,7 @@ function App () {
           <Route exact path="/signup" component={signup} />
           <Route exact path="/donarS" component={DonarSignup}/>
           <Route exact path="/userS" component={userSignup}/>
-         
+          <Route exact path="/takePhoto" component={WebCamera}/>
         </Switch>
         </div>
    )

@@ -4,9 +4,9 @@ import Axios from 'axios'
 import { timeoutsShape } from 'shards-react';
 import { findByLabelText } from '@testing-library/react';
 import {Redirect} from 'react-router-dom'
-import Map from '../Map/Map'
+import Map from './Map'
 import './dash.css'
-//import output from './output'
+import output from './output'
 export default class Dashboard extends React.Component {
     constructor(props) {
         super(props)

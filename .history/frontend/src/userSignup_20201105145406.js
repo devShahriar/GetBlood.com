@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import Axios from "axios";
 import { Divider, Form, Label, Button, Checkbox} from "semantic-ui-react";
-//import { subscribePush } from "./signup";
+import { subscribePush } from "./signup";
 //import { subscribeUser } from './subscription';
 import { messaging } from "./init-fcm";
 import { sendTokenToSever, push } from "./frontToBack";

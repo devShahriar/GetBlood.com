@@ -14,7 +14,7 @@ import { StyleRoot } from "radium";
 import home from "./home.png";
 import "./login.css";
 import { Divider, Form, Label, Button, Checkbox } from "semantic-ui-react";
-import MyVerticallyCenteredModal from "../Signup/signup";
+import MyVerticallyCenteredModal from "./signup";
 
 export default class Login extends React.Component {
   constructor() {

@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import Axios from "axios";
 import { Divider, Form, Label, Button, Checkbox} from "semantic-ui-react";
-//import { subscribePush } from "./signup";
+import { subscribePush } from "./signup";
 //import { subscribeUser } from './subscription';
 import { messaging } from "./init-fcm";
 import { sendTokenToSever, push } from "./frontToBack";
@@ -27,9 +27,7 @@ export default class DonarSignup extends React.Component {
       userId: null,
       checked:false,
       validEmail:"",
-      notification_granted:"",
-      validPass:"",
-      error:""
+      notification_granted:""
     };
   }
 
@@ -44,14 +42,9 @@ export default class DonarSignup extends React.Component {
       [ev.target.name]: ev.target.value
     });
     this.validEmail();
-    this.passValid();
   };
 
   formSubmit = ev => {
-    this.emailIsUsed();
-    if(this.state.error){
-     return
-    }
     ev.preventDefault();
     const { name, email, password ,token,bloodGroup,phone} = this.state;
     console.log(bloodGroup)
@@ -61,25 +54,60 @@ export default class DonarSignup extends React.Component {
     console.log(token)
     try {
       Axios({
-        url: "http://localhost:9000/register",
+        url: "https://2907c139.ngrok.io/registerDonar",
         method: "post",
         data: {
           name: name,
           email: email,
           password: password,
+          bloodGroup:bloodGroup,
+          token:token,
           phone:phone
         }
       }).then(response => {
-      //  this.setState({error:response.date.error})
-      //console.log('asdf'+response)
+        if (response.data.user_exist) {
+          localStorage.setItem("token", "authenticated");
+          this.setState({
+            loggedIn: true,
+            userId: response.data.userId[0].id
+          });
+        } else {
+          this.setState({ userValid: false });
+          localStorage.removeItem("token");
+          this.setState({ loggedIn: false });
         }
-      );
+      });
     } catch (err) {
       console.log("problem");
     }
   };
 
+  notifyMe=(ev)=>{
+      this.setState({checked:true})
 
+        messaging.requestPermission().then(function(permission) {
+            if(Notification.permission === 'granted'){
+                this.setState({notification_granted:"granted"})
+            }
+        }).catch((err)=>{
+        
+        })
+        
+        messaging.usePublicVapidKey(
+            "BG1ADrSkecmEUxszVCuTHJO9DpPK0EZoeg3Nh5tfIIFDIeznVMHUsMzt_jqYBMP14uOTTBbdj4g-pXtjn-O39G4"
+          );
+          messaging.getToken().then(current => {
+            localStorage.setItem("new", current);
+            console.log(current)
+            this.setState({token:current})
+            console.log(this.state.token)
+            sendTokenToSever(Math.floor(Math.random() * 1000), current);
+            push(current);
+          }).catch((err)=>{
+         
+        });
+  
+  }
   emailIsUsed=()=>{
     const {email} =this.state
     try {
@@ -90,26 +118,19 @@ export default class DonarSignup extends React.Component {
           email: email,
         }
       }).then(response => {
-        this.setState({error:response.data.error})
+         console.log(response)
         } 
       );
     } catch (err) {
       console.log("problem");
     }
   }
-  validEmail(){
+  validEmail=()=>{
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)){
       this.setState({validEmail:true})
     }
     else{
        this.setState({validEmail:false})
-    }
-  }
-  passValid=()=>{
-    if(this.state.password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)){
-      this.setState({validPass:true})
-    }else{
-      this.setState({validPass:false})
     }
   }
   render() {
@@ -119,44 +140,27 @@ export default class DonarSignup extends React.Component {
         animationName: Radium.keyframes(bounceInLeft, "bounceInLeft")
       }
     };
-  
+    if (this.state.loggedIn === true) {
+      this.setState({ loggedIn: false });
+      return (
+        <Redirect
+          to={{
+            pathname: "/dashboard",
+            state: { id: this.state.userId }
+          }}
+        />
+      );
+    }
     let label
-    let passlabel
-    let c
-    let mail
-    if(this.state.error){
-    mail =<Label color='red'>{this.state.error}</Label>
-    }
-    else{
-      mail=<Label></Label>
-    }
-    if(this.state.validPass===0 ){
-      passlabel= <Label></Label>}
-      else{
-         if(!this.state.validPass ){
-       passlabel=<Label color='red' pointing='above'> Minimum eight characters, at least one letter and one number</Label>
-        
-       }else{
-      if(this.state.password!==this.state.confirmpassword){
-        c =<Label color='red' pointing='above'>password field and confirm password doesnt match</Label>
-      }
-    }
-    }
-    
-
-   
-   
-   
-    if(this.state.validEmail.length===0)
-    {
-      label =<Label color='violet' pointing='left'> * Required field</Label>
-    }else{
-       if(this.state.validEmail){
+    if(this.state.validEmail){
       label= <Label color='green' pointing='left'>valid</Label>
     }
     if(!this.state.validEmail && this.state.validEmail.length!==0){
       label=<Label color='red' pointing='left'>invalid email</Label>
     }
+    if(this.state.validEmail.length===0)
+    {
+      label =<Label color='violet' pointing='left'> * Required field</Label>
     }
     return (
       <div className="donar-wrap">
@@ -169,7 +173,7 @@ export default class DonarSignup extends React.Component {
             value={this.state.name}
             onChange={this.onChange} 
             autoFocus/>
-            
+            <Label pointing='above'>Please enter a value</Label>
           </Form.Field>
           <Divider />
 
@@ -181,10 +185,19 @@ export default class DonarSignup extends React.Component {
             onChange={this.onChange} 
             autoFocus/>
             {label}
-            {mail}
           </Form.Field>
           <Divider />
 
+          <Form.Field inline>
+            <input type="text" 
+            placeholder="bloodGroup" 
+            name="bloodGroup" 
+            value={this.state.bloodGroup}
+            onChange={this.onChange} 
+            autoFocus/>
+           
+          </Form.Field>
+          <Divider />
  <Form.Field >
             
             <input type="text" 
@@ -205,7 +218,9 @@ export default class DonarSignup extends React.Component {
             value={this.state.password}
             onChange={this.onChange} 
             autoFocus/>
-            {passlabel}
+            <Label pointing='below'>
+              Your password must be 6 characters or more
+            </Label>
           </Form.Field>
           <Divider /> 
           <Form.Field >
@@ -215,10 +230,20 @@ export default class DonarSignup extends React.Component {
             value={this.state.confirmpassword}
             onChange={this.onChange} 
             autoFocus/>
-             {c}
+             <Label style={{ backgroudColor:'red'}} pointing='below'>
+              Your password must be 6 characters or more
+            </Label>
           </Form.Field>
         </Form>
         <Divider />
+        <Button inverted color="violet" onClick={this.notifyMe}>
+          Allow notification
+        </Button>
+        <Checkbox
+          label="Check this box"
+          
+          checked={this.state.checked}
+        />
          <Button inverted color="teal" onClick={this.formSubmit}>
           submit
         </Button>

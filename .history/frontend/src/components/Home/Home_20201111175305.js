@@ -1,15 +1,15 @@
 import React from 'react';
 import home from './home.png';
 import { ImageGroup } from 'semantic-ui-react';
-import Login from '../Login/Login'
+import Login from './Login'
 import drop from './drop.png'
-//import b from './b.png'
+import b from './b.png'
 import Radium, {StyleRoot} from 'radium';
 import './home.css'
 import { bounceInLeft } from 'react-animations';
 import { Card, CardImg,CardBody, Button, FormInput, CardHeader } from "shards-react"
 import { Redirect } from 'react-router-dom';
-import MyVerticallyCenteredModal from '../Signup/signup'
+import MyVerticallyCenteredModal from './signup'
 export default class Home extends React.Component {
 
     constructor() {

@@ -6,7 +6,7 @@ import { findByLabelText } from '@testing-library/react';
 import {Redirect} from 'react-router-dom'
 import Map from '../Map/Map'
 import './dash.css'
-//import output from './output'
+import output from './output'
 export default class Dashboard extends React.Component {
     constructor(props) {
         super(props)
