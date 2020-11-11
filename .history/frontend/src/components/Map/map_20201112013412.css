@@ -42,19 +42,17 @@
     padding: 6px;
     font-weight: bold;
 }
-.s{
+.s{ 
+    margin-top: 50px;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    position: absolute;
-    gap: 12px;
+
     width:400px;
-    top: 1000;
-    left: 10;
-    margin-top: 100px;
-    margin-left:10px;
-    
+    top: 50;
+    left: 0;
+    margin: 12px;
+    background-color: #040011;
     border-radius: 15px;
     opacity: 0.85;
     color: #ffffff;

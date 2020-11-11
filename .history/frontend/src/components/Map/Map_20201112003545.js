@@ -42,7 +42,7 @@ export default class Map extends React.Component {
     this.state.token = localStorage.getItem("token");
     this.c();
     this.getBank = this.getBank.bind(this);
-   
+
     console.log(this.props.latitude);
   }
 
@@ -129,14 +129,41 @@ export default class Map extends React.Component {
         .catch({});
     } catch (e) {}
   };
- 
+
   render() {
     // return <Redirect to="/login"/>
 
     //  localStorage.removeItem("token")
     const res = this.state.res;
 
-  
+    let list = res.map(function (d, idx) {
+      return (
+        <div
+          className="content"
+          onClick={() => {
+            let directions = new MapboxDirections({
+              accessToken: mapboxgl.accessToken,
+              unit: "metric",
+              profile: "mapbox/driving",
+            });
+
+            navigator.geolocation.getCurrentPosition((position) => {
+              console.log(position);
+              directions.setOrigin([
+                position.coords.longitude,
+                position.coords.latitude,
+              ]);
+              directions.setDestination([d.longitude, d.latitude]);
+            });
+          }}
+        >
+        <div>
+          <SearchResult result={d}/>
+        </div>
+         
+        </div>
+      );
+    });
     return (
       <div> 
          
@@ -161,8 +188,8 @@ export default class Map extends React.Component {
           </div> 
        
         </div>
-        <div className='s'>
-        <SearchResult result={res}/>
+        <div>
+          {list}
         </div>
            
         <div ref={(el) => (this.mapContainer = el)} className="mapContainer" />

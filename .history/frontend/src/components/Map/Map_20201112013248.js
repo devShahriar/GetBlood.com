@@ -161,7 +161,7 @@ export default class Map extends React.Component {
           </div> 
        
         </div>
-        <div className='s'>
+        <div className>
         <SearchResult result={res}/>
         </div>
            

@@ -42,7 +42,7 @@ export default class Map extends React.Component {
     this.state.token = localStorage.getItem("token");
     this.c();
     this.getBank = this.getBank.bind(this);
-   
+
     console.log(this.props.latitude);
   }
 
@@ -129,17 +129,51 @@ export default class Map extends React.Component {
         .catch({});
     } catch (e) {}
   };
- 
+
   render() {
     // return <Redirect to="/login"/>
 
     //  localStorage.removeItem("token")
     const res = this.state.res;
 
-  
+    let list = res.map(function (d, idx) {
+      return (
+        <div
+          className="content"
+          onClick={() => {
+            let directions = new MapboxDirections({
+              accessToken: mapboxgl.accessToken,
+              unit: "metric",
+              profile: "mapbox/driving",
+            });
+
+            navigator.geolocation.getCurrentPosition((position) => {
+              console.log(position);
+              directions.setOrigin([
+                position.coords.longitude,
+                position.coords.latitude,
+              ]);
+              directions.setDestination([d.longitude, d.latitude]);
+            });
+          }}
+        >
+          Bloodbank name:{d.name}
+          <Divider />
+          location: {d.location}
+          <Divider />
+          <Label color="violet" pointing="left">
+            👈 click here to get directions
+          </Label>
+          <Divider />
+        
+        </div>
+      );
+    });
     return (
       <div> 
-         
+         <div>
+          <SearchResult result={d}/>
+        </div>
         <div className="search">
           <input
             type="text"
@@ -154,17 +188,14 @@ export default class Map extends React.Component {
             search
           </Button>
           <div>
+            {list}
             <Button inverted color="violet" onClick={this.get}>
               {" "}
               Send notification to donor
             </Button>
-          </div> 
-       
+          </div>
         </div>
-        <div className='s'>
-        <SearchResult result={res}/>
-        </div>
-           
+        
         <div ref={(el) => (this.mapContainer = el)} className="mapContainer" />
       </div>
     );

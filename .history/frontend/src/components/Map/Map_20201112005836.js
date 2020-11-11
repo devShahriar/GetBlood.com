@@ -42,7 +42,7 @@ export default class Map extends React.Component {
     this.state.token = localStorage.getItem("token");
     this.c();
     this.getBank = this.getBank.bind(this);
-   
+    this.directions = this.directions.bind(this)
     console.log(this.props.latitude);
   }
 
@@ -136,7 +136,17 @@ export default class Map extends React.Component {
     //  localStorage.removeItem("token")
     const res = this.state.res;
 
-  
+    let list = res.map(function (d, idx) {
+      return (
+      
+          <SearchResult result={d} getLocation={() => {
+          
+
+       
+          }}/>
+        
+      );
+    });
     return (
       <div> 
          
@@ -161,8 +171,8 @@ export default class Map extends React.Component {
           </div> 
        
         </div>
-        <div className='s'>
-        <SearchResult result={res}/>
+        <div>
+          {list}
         </div>
            
         <div ref={(el) => (this.mapContainer = el)} className="mapContainer" />

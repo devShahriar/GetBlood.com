@@ -48,7 +48,6 @@
     flex-direction: row;
     justify-content: space-between;
     position: absolute;
-    gap: 12px;
     width:400px;
     top: 1000;
     left: 10;

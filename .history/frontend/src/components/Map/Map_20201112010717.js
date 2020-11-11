@@ -42,7 +42,7 @@ export default class Map extends React.Component {
     this.state.token = localStorage.getItem("token");
     this.c();
     this.getBank = this.getBank.bind(this);
-   
+    this.directions = this.directions.bind(this)
     console.log(this.props.latitude);
   }
 
@@ -161,7 +161,7 @@ export default class Map extends React.Component {
           </div> 
        
         </div>
-        <div className='s'>
+        <div>
         <SearchResult result={res}/>
         </div>
            
