@@ -9,7 +9,7 @@ class user {
         this.password = password;
     }
     getById(){
-        return this.name
+        return this.id 
     }
     getUser(){
      return `user id is ${this.id} user name ${this.name} pass ${this.password}`   

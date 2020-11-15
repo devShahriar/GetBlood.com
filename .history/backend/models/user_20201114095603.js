@@ -8,13 +8,11 @@ class user {
         this.email = email;
         this.password = password;
     }
-    getById(){
-        return this.name
-    }
+
     getUser(){
      return `user id is ${this.id} user name ${this.name} pass ${this.password}`   
     }
-    
+
     static findUser =(email) =>{
          db.query()
     }
