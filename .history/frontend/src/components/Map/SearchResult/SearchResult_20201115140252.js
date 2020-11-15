@@ -4,7 +4,6 @@ import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-direct
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 import "./search.css";
 import { Card, Button } from "semantic-ui-react";
-import ConfirmOrder from "../ConfirmOrder/ConfirmOrder";
 const SearchResult = (props) => {
   console.log(props.result);
 
@@ -28,12 +27,8 @@ const SearchResult = (props) => {
   };
 
 
-  const viewModal =(s)=>{
-    setModal(state=>state=s)
-  }
-  const handleClose =(s)=>{
-    setModal(false)
-  }
+  
+
 
   let list = props.result.map(function (d, idx) {
     return (
@@ -71,7 +66,7 @@ const SearchResult = (props) => {
                     className="loc-button"
                     color="red"
                     onClick={() => {
-                      viewModal(true)
+                      setModal(true)
                     }}
                   >
                     Order
@@ -83,11 +78,6 @@ const SearchResult = (props) => {
             
           </tr>
         </table>
-        <div>
-          <ConfirmOrder show={showModal} handleClose={handleClose}>
-
-          </ConfirmOrder>
-        </div>
       </div>
     );
   });

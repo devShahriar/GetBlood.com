@@ -1,16 +1,15 @@
-import React,{useState} from "react";
+import React from "react";
 import mapboxgl from "mapbox-gl";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 import "./search.css";
 import { Card, Button } from "semantic-ui-react";
-import ConfirmOrder from "../ConfirmOrder/ConfirmOrder";
 const SearchResult = (props) => {
   console.log(props.result);
 
   mapboxgl.accessToken =
     "pk.eyJ1Ijoic2h1ZGlwIiwiYSI6ImNrNjB3YjVqMzBibXAzbW55MTY0cjZxdG4ifQ.AQe8EIqNEjW0HyfDvf0tlQ";
-  const [showModal , setModal] = useState(false)
+
   const geolocation = (longitude, latitude) => {
     let directions = new MapboxDirections({
       accessToken: mapboxgl.accessToken,
@@ -26,15 +25,6 @@ const SearchResult = (props) => {
       directions.setDestination([longitude, latitude]);
     });
   };
-
-
-  const viewModal =(s)=>{
-    setModal(state=>state=s)
-  }
-  const handleClose =(s)=>{
-    setModal(false)
-  }
-
   let list = props.result.map(function (d, idx) {
     return (
       <div className="cards">
@@ -61,7 +51,7 @@ const SearchResult = (props) => {
                         geolocation(d.longitude, d.latitude);
                       }}
                     >
-                     Location{" "}
+                      Get Location
                     </Button>
                   </div>
                 </td>
@@ -71,7 +61,7 @@ const SearchResult = (props) => {
                     className="loc-button"
                     color="red"
                     onClick={() => {
-                      viewModal(true)
+                      geolocation(d.longitude, d.latitude);
                     }}
                   >
                     Order
@@ -83,11 +73,6 @@ const SearchResult = (props) => {
             
           </tr>
         </table>
-        <div>
-          <ConfirmOrder show={showModal} handleClose={handleClose}>
-
-          </ConfirmOrder>
-        </div>
       </div>
     );
   });

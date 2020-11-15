@@ -28,12 +28,10 @@ const SearchResult = (props) => {
   };
 
 
-  const viewModal =(s)=>{
-    setModal(state=>state=s)
+  const viewModal =()=>{
+    setModal(state=>!state)
   }
-  const handleClose =(s)=>{
-    setModal(false)
-  }
+  
 
   let list = props.result.map(function (d, idx) {
     return (
@@ -71,7 +69,8 @@ const SearchResult = (props) => {
                     className="loc-button"
                     color="red"
                     onClick={() => {
-                      viewModal(true)
+                      setModal(true)
+                      viewModal()
                     }}
                   >
                     Order
@@ -84,7 +83,7 @@ const SearchResult = (props) => {
           </tr>
         </table>
         <div>
-          <ConfirmOrder show={showModal} handleClose={handleClose}>
+          <ConfirmOrder show={showModal} handleClose={}>
 
           </ConfirmOrder>
         </div>

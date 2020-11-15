@@ -14,12 +14,7 @@
     
 }
 .loc-button{
-    padding: 0px;
-    width: 100px;
-    height: 30px;
-}
-.location{
-    color: rgb(4, 146, 202);
+    padding: 10px;
 }
 td{
     padding-right: 5px;
@@ -39,7 +34,7 @@ td{
         margin-bottom: 5px;
         width: 400px;
         border-radius: 15px;
-        box-shadow: 0 20px 25px 0 rgba(139, 5, 5, 0.2); 
+        box-shadow: 0 20px 25px 0 rgba(2, 0, 0, 0.2); 
 
  }
 .i{

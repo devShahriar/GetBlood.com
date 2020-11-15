@@ -29,7 +29,7 @@ const SearchResult = (props) => {
 
 
   const viewModal =(s)=>{
-    setModal(state=>state=s)
+    setModal(s)
   }
   const handleClose =(s)=>{
     setModal(false)

@@ -29,11 +29,9 @@ const SearchResult = (props) => {
 
 
   const viewModal =(s)=>{
-    setModal(state=>state=s)
+    setModal(s)
   }
-  const handleClose =(s)=>{
-    setModal(false)
-  }
+  
 
   let list = props.result.map(function (d, idx) {
     return (
@@ -84,7 +82,7 @@ const SearchResult = (props) => {
           </tr>
         </table>
         <div>
-          <ConfirmOrder show={showModal} handleClose={handleClose}>
+          <ConfirmOrder show={showModal} handleClose={}>
 
           </ConfirmOrder>
         </div>
