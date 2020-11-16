@@ -22,15 +22,15 @@ export default class Newsfeed extends React.Component{
         console.log(this.state.post)
     }
     render(){
-        let post = this.state.post.map((r,k)=>{
+        let post = this.state.post.map(r=>{
             return (
                 <div>
-                <Post key={k} data={r}></Post>
+                <Post data={r}></Post>
                </div>
             )
         })
         return (
-           <div className="feed">
+           <div>
              <ul>{post}</ul>
            </div>   
         )

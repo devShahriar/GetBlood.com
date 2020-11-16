@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import Axios from 'axios'
-import Post from './Post/Post'
+
 export default class Newsfeed extends React.Component{
 
     state = {
@@ -22,15 +22,16 @@ export default class Newsfeed extends React.Component{
         console.log(this.state.post)
     }
     render(){
-        let post = this.state.post.map((r,k)=>{
+        let post = this.state.post.map(r=>{
             return (
-                <div>
-                <Post key={k} data={r}></Post>
+                <div className="card">
+               <h1>{r.user_name}</h1>
+               <p>{r.Header}</p>
                </div>
             )
         })
         return (
-           <div className="feed">
+           <div>
              <ul>{post}</ul>
            </div>   
         )

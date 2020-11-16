@@ -4,7 +4,6 @@ const path = require('path');
 const body_parser = require('body-parser');
 const app = express();
 const signup = require('./routes/signupRoute');
-const feed = require('./routes/Newsfeed')
 const cors = require('cors')
 
 
@@ -15,7 +14,6 @@ app.use(body_parser.json());
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(signup);
-app.use(feed);
 
 app.listen(9000);
 

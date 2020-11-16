@@ -30,7 +30,7 @@ export default class Newsfeed extends React.Component{
             )
         })
         return (
-           <div className="feed">
+           <div>
              <ul>{post}</ul>
            </div>   
         )
