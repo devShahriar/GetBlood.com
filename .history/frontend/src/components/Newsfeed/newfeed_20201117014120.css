@@ -9,13 +9,11 @@
 .navbar{
     
     background-color: rgb(0, 0, 0);
-    height: 50px;
+    height: 150px;
     min-width: 500px;
     margin-bottom: 150px;
     
 }
-.button{
-    justify-content: right;
-    border-radius: 12px;
-    border-color: rgb(153, 16, 172);
+.log{
+    border-color: cadetblue;
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Post from "./Post/Post";
 import "./newfeed.css";
-import { Button, Segment } from 'semantic-ui-react'
 export default class Newsfeed extends React.Component {
   state = {
     post: [],
