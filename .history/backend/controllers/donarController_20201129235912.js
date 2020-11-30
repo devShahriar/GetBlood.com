@@ -1,8 +1,5 @@
 const db = require('../util/db');
 const short = require('shortid')
-
-
-
 exports.registerDonar=(req,res,next)=>{
     const id = short.generate();
     console.log(id)
@@ -45,7 +42,6 @@ exports.validEmail=(req,res,next) =>{
         }
     )
 }
-
 exports.checkUser=(req,res,next)=>{
     const e =req.body.email
     db.execute("select role from login where email=?",[e])

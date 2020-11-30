@@ -10,6 +10,7 @@ router.post('/findBy',signupController.findByid);
 router.post('/saveToken',signupController.saveToken)
 router.post('/registerDonar',donar.registerDonar);
 router.post('/validEmail',donar.validEmail)
+router.post('/getBlood',donar.getBlood)
 router.post('/check',donar.checkUser)
 router.post('/getToken' ,donar.getToken)
 //webpush.setVapidDetails(process.env.WEB_PUSH_CONTACT, process.env.PUBLIC_VAPID_KEY, process.env.PRIVATE_VAPID_KEY)

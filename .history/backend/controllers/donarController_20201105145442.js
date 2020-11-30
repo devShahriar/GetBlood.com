@@ -1,8 +1,5 @@
 const db = require('../util/db');
 const short = require('shortid')
-
-
-
 exports.registerDonar=(req,res,next)=>{
     const id = short.generate();
     console.log(id)
@@ -45,7 +42,6 @@ exports.validEmail=(req,res,next) =>{
         }
     )
 }
-
 exports.checkUser=(req,res,next)=>{
     const e =req.body.email
     db.execute("select role from login where email=?",[e])
@@ -66,4 +62,12 @@ exports.getToken=(req,res,next)=>{
             res.json({ token:r[0][0].notification_token})
         }
     )
+}
+exports.getBlood=(req,res,next)=>{
+    const blood =req.body.blood_group;
+    db.execute("select distinct name,location,latitude,longitude from blood_bag b inner join blood_bank b1 on b.blood_bank_id=b1.blood_bank_id where blood_group=?;",[blood]).then(
+        r=>{
+            res.json({result:r[0]})
+        }
+    ).then(r=>{}).catch(e=>{})
 }
