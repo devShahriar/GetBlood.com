@@ -1,0 +1,24 @@
+.Card{
+    padding: 16px;
+    background-color: rgba(23, 23, 37, 0.952);
+    margin-bottom:25px;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 20px 25px 0 rgba(139, 5, 5, 0.2); 
+    color:white;
+}
+
+.username{
+    left: 0;
+    font-style: italic;
+}
+
+.tag{
+    text-align: center;
+    background-color: green;
+    width: 45px;
+    border-radius: 5px;
+}
+.header{
+    font-size: large;
+}

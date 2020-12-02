@@ -18,7 +18,8 @@ class Newsfeed extends React.Component {
     let isLoggedIn=false;
     this.state = {
       post: [],
-      isLoggedIn:false
+      isLoggedIn:false,
+      bloodGroup: "",
     };
     
   }
@@ -33,7 +34,12 @@ class Newsfeed extends React.Component {
     console.log(this.state.post);
   }
 
-  
+  onChange = (ev) => {
+    console.log(this.state.bloodGroup);
+    this.setState({
+      [ev.target.name]: ev.target.value,
+    });
+  };
   handleClickOutside = evt => {
     evt.preventDefault()
     this.setState({isLoggedIn:false})
@@ -66,6 +72,16 @@ class Newsfeed extends React.Component {
             </Button>
             
           </div>
+        </div>
+        <div className="search">
+        <input
+            type="text"
+            placeholder="bloodGroup"
+            name="bloodGroup"
+            value={this.state.bloodGroup}
+            onChange={this.onChange}
+            autoFocus
+          />
         </div>
         <div className="modal" style={ this.state.isLoggedIn ? { display:'block'} : {display : 'none'} }>
           <LoginModal />
