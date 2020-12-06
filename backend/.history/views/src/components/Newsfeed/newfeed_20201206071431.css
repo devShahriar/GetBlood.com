@@ -102,12 +102,8 @@
   }
 
   .blood_tag{
-    background-color: rgb(3, 95, 52);
+    background-color: rgb(53, 139, 139);
     width: 45px;
     border-radius: 7px;
     text-align: center;
-  }
-  .user{
-    font-style: oblique;
-    font-family: fantasy;
   }

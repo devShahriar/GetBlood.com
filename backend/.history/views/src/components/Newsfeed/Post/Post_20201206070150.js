@@ -5,8 +5,8 @@ const Post = (props) => {
     return (
         <div className='Card'>
             <p>{props.data.user_name}</p>
-            <h2>{props.data.Header}</h2>
-            <p className="blood_tag">{props.data.Blood_tag}</p>
+            <h1>{props.data.Header}</h1>
+            <p>{props.data.Blood_tag}</p>
             <p>{props.data.description}</p>
         </div>
     )

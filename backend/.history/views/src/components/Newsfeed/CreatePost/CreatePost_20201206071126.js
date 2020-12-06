@@ -33,7 +33,9 @@ class CreatePost extends React.Component {
       [ev.target.name]: ev.target.value,
     });
   };
-  
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
   formSubmit = (ev) => {
     ev.preventDefault();
     const { user_id , user_name ,header , blood_tag , description} = this.state;

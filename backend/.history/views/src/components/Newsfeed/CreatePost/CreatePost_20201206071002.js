@@ -33,7 +33,6 @@ class CreatePost extends React.Component {
       [ev.target.name]: ev.target.value,
     });
   };
-  
   formSubmit = (ev) => {
     ev.preventDefault();
     const { user_id , user_name ,header , blood_tag , description} = this.state;
@@ -102,7 +101,7 @@ class CreatePost extends React.Component {
                 value={this.state.description}
                 onChange={this.onChange}
               />
-              <select name="blood_tag" value={this.state.blood_tag} onChange={this.onChange}>
+              <select value={this.state.blood_tag} onChange={this.onChange}>
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
                 <option value="A+">A+</option>
