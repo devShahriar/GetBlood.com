@@ -82,7 +82,7 @@ body{
     
     }
   .wrap-login100 {
-      
+      z-index: 1;
       width: 350px;
      
       padding: 55px 15px 15px 50px;

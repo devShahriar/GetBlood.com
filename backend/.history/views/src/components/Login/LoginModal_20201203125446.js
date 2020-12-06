@@ -16,7 +16,6 @@ import home from "./home.png";
 import "./login.css";
 import { Divider, Form, Label, Button, Checkbox } from "semantic-ui-react";
 import MyVerticallyCenteredModal from "../Signup/signup";
-import { resolveInclude } from "ejs";
 
  class LoginModal extends React.Component {
   constructor(props) {
@@ -67,9 +66,7 @@ import { resolveInclude } from "ejs";
         // back to the client side
         console.log(response.data.user[0].role);
         this.setState({ role: response.data.user[0].role });
-        localStorage.setItem('auth',JSON.stringify(response.data.user[0])) 
-        localStorage.setItem('authTrue' , "true")
-        
+
         // this.setState({ loggedIn:true,userId:response.data.userId[0].id});
         // }
 

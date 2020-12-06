@@ -26,7 +26,7 @@ function App () {
           <Route exact path="/signup" component={signup} />
           <Route exact path="/donarS" component={DonarSignup}/>
           <Route exact path="/userS" component={userSignup}/>
-          <Route exact path="/create" component={CreatePost}/>
+          <Route exact path="/creat" component={CreatePost}/>
         </Switch>
         </div>
    )

@@ -7,7 +7,6 @@ import "./newfeed.css";
 import { Button, Segment } from "semantic-ui-react";
 import LoginModal from "../Login/LoginModal";
 import flash from "react-animations/lib/flash";
-import { Redirect } from "react-router";
 class Newsfeed extends React.Component {
   state = {
     post: [],
@@ -54,9 +53,6 @@ class Newsfeed extends React.Component {
     this.setState({isLoggedIn:true})
   }
   render() {
-    if (this.state.create){
-      return <Redirect to={{ pathname: "/create" }}></Redirect>;
-    }
     let post = this.state.post.map((r, k) => {
       return (
         <div>
@@ -78,15 +74,9 @@ class Newsfeed extends React.Component {
             </Button>
             <Button inverted color="pink" onClick={
               ()=>{
-                if(localStorage.getItem('authTrue')==="true"){
-                  this.setState({
-                    create:true
-                  })
-                }
-                else{
-                  alert("Please login to create post")
-                }
-                
+                this.setState({
+                  create:true
+                })
               }
             }>
               Create Post
@@ -106,7 +96,18 @@ class Newsfeed extends React.Component {
           </div>
         
         </div>
-     
+        <div className="modal2" style={ this.state.create ? { display:'block'} : {display : 'none'} }>
+          <CreatePost />
+          <div className="close">
+          <Button inverted color='red' onClick={(ev)=>{
+            ev.preventDefault()
+            this.setState({create:false})
+          }}>
+          Close
+          </Button>
+          </div>
+        
+        </div>
         <div className="feed">
        
           <ul>{post}</ul>

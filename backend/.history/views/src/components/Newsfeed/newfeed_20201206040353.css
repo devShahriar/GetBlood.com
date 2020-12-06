@@ -4,7 +4,7 @@
     flex-direction: row;
     justify-content: space-between;
     position: absolute;
-   left:50%;
+   
 }
 .search{
   position: fixed;
@@ -40,20 +40,7 @@
     right:0;
     
 }
-.modal2 {
-  /* Black w/ opacity */
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 35%;
-  
-  right: 50%;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
- /* Fallback color */
- ; 
-  }
+
 .modal {
   /* Black w/ opacity */
   display: none; /* Hidden by default */

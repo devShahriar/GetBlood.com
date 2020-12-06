@@ -68,8 +68,6 @@ import { resolveInclude } from "ejs";
         console.log(response.data.user[0].role);
         this.setState({ role: response.data.user[0].role });
         localStorage.setItem('auth',JSON.stringify(response.data.user[0])) 
-        localStorage.setItem('authTrue' , "true")
-        
         // this.setState({ loggedIn:true,userId:response.data.userId[0].id});
         // }
 

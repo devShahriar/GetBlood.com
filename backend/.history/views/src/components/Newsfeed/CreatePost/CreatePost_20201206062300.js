@@ -55,7 +55,7 @@ class CreatePost extends React.Component {
        alert("Post created successfully")
        setTimeout( ()=>{
            this.setState({created:true})
-       },1000)
+       })
 
         // this.setState({ loggedIn:true,userId:response.data.userId[0].id});
         // }

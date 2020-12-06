@@ -11,7 +11,6 @@ import Newsfeed from './components/Newsfeed/Newsfeed'
 import DonarSignup from './DonarSignup';
 import userSignup from './userSignup';
 import ShowResult from './components/Map/SearchResult/SearchResult'
-import CreatePost from './components/Newsfeed/CreatePost/CreatePost';
 function App () {
   
     return (
@@ -26,7 +25,7 @@ function App () {
           <Route exact path="/signup" component={signup} />
           <Route exact path="/donarS" component={DonarSignup}/>
           <Route exact path="/userS" component={userSignup}/>
-          <Route exact path="/create" component={CreatePost}/>
+         
         </Switch>
         </div>
    )

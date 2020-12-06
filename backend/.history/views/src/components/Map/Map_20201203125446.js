@@ -82,7 +82,6 @@ export default class Map extends React.Component {
         center: [lng, lat],
         zoom: 15,
       });
-     // new mapboxgl.Marker(el).setLngLat([lng,lat])
       this.map.addControl(
         new mapboxgl.GeolocateControl({
           positionOptions: {

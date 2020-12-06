@@ -7,7 +7,6 @@ import "./newfeed.css";
 import { Button, Segment } from "semantic-ui-react";
 import LoginModal from "../Login/LoginModal";
 import flash from "react-animations/lib/flash";
-import { Redirect } from "react-router";
 class Newsfeed extends React.Component {
   state = {
     post: [],
@@ -17,13 +16,10 @@ class Newsfeed extends React.Component {
   constructor(props) {
     super(props);
     let isLoggedIn=false;
-    let create=false;
-
     this.state = {
       post: [],
       isLoggedIn:false,
       bloodGroup: "",
-      create:false
     };
     
   }
@@ -54,9 +50,6 @@ class Newsfeed extends React.Component {
     this.setState({isLoggedIn:true})
   }
   render() {
-    if (this.state.create){
-      return <Redirect to={{ pathname: "/create" }}></Redirect>;
-    }
     let post = this.state.post.map((r, k) => {
       return (
         <div>
@@ -66,9 +59,8 @@ class Newsfeed extends React.Component {
     });
     return (
       <div>
-        
+       
         <div className="navbar">
-        
           <div className="logbutton">
             <Button inverted color="violet" onClick={this.showLogin}>
               Login
@@ -76,24 +68,11 @@ class Newsfeed extends React.Component {
             <Button inverted color="pink">
               Sign in
             </Button>
-            <Button inverted color="pink" onClick={
-              ()=>{
-                if(localStorage.getItem('authTrue')==="true"){
-                  this.setState({
-                    create:true
-                  })
-                }
-                else{
-                  alert("Please login to create post")
-                }
-                
-              }
-            }>
-              Create Post
-            </Button>
           </div>
         </div>
         
+         
+      
         <div className="modal" style={ this.state.isLoggedIn ? { display:'block'} : {display : 'none'} }>
           <LoginModal />
           <div className="close">
@@ -106,9 +85,8 @@ class Newsfeed extends React.Component {
           </div>
         
         </div>
-     
         <div className="feed">
-       
+        <CreatePost/>
           <ul>{post}</ul>
         </div>
       </div>

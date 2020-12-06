@@ -13,20 +13,14 @@ class CreatePost extends React.Component {
     let loggedIn = false;
     let showSignup = false;
     let isLoggedIn = false;
-    let created = false;
     this.state = {
-      user_id:"",
-      user_name:"",
       header: "",
       blood_tag: "",
       description: "",
-      created:false
     };
   }
   componentDidMount() {
-    const obj = JSON.parse(localStorage.getItem("auth"))
-    console.log(obj.id)
-    this.setState({ user_id:obj.id , user_name:obj.name });
+    this.setState({ isLoggedIn: this.props.isLoggedIn });
   }
   onChange = (ev) => {
     this.setState({
@@ -35,27 +29,22 @@ class CreatePost extends React.Component {
   };
   formSubmit = (ev) => {
     ev.preventDefault();
-    const { user_id , user_name ,header , blood_tag , description} = this.state;
-    console.log(user_id , user_name ,header , blood_tag , description)
+    const { name, email, password } = this.state;
+
     try {
       Axios({
-        url: "http://localhost:9000/createPost/",
+        url: "http://localhost:9000/check/",
         method: "post",
         data: {
           // sending user email and password
-          user_id:user_id,
-          user_name:user_name,
-          Blood_tag:blood_tag,
-          Header:header,
-          description:description,
+          header: this.state.header,
+          description: this.state.description,
         },
       }).then((response) => {
         // And the server sends back the user info
         // back to the client side
-       alert("Post created successfully")
-       setTimeout( ()=>{
-           this.setState({created:true})
-       },1000)
+        console.log(response.data.user[0].role);
+        this.setState({ role: response.data.user[0].role });
 
         // this.setState({ loggedIn:true,userId:response.data.userId[0].id});
         // }
@@ -75,9 +64,6 @@ class CreatePost extends React.Component {
     alert(`Selected file - ${this.fileInput.current.files[0].name}`);
   }
   render() {
-    if(this.state.created===true){
-      return <Redirect to={{ pathname: "/" }}></Redirect>;
-    }
     return (
       <div className="c">
         <div>
@@ -116,9 +102,19 @@ class CreatePost extends React.Component {
           </Form>
 
           <Button inverted color="purple" onClick={this.formSubmit}>
-            Save
+            Login
           </Button>
 
+          <Button
+            inverted
+            color="teal"
+            type="submit"
+            onClick={() => {
+              this.setState({ showSignup: true });
+            }}
+          >
+            sign up ?
+          </Button>
         </div>
       </div>
     );

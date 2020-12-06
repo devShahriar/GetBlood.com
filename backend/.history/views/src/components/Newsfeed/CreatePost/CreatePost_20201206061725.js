@@ -13,14 +13,12 @@ class CreatePost extends React.Component {
     let loggedIn = false;
     let showSignup = false;
     let isLoggedIn = false;
-    let created = false;
     this.state = {
       user_id:"",
       user_name:"",
       header: "",
       blood_tag: "",
       description: "",
-      created:false
     };
   }
   componentDidMount() {
@@ -36,7 +34,7 @@ class CreatePost extends React.Component {
   formSubmit = (ev) => {
     ev.preventDefault();
     const { user_id , user_name ,header , blood_tag , description} = this.state;
-    console.log(user_id , user_name ,header , blood_tag , description)
+
     try {
       Axios({
         url: "http://localhost:9000/createPost/",
@@ -52,10 +50,8 @@ class CreatePost extends React.Component {
       }).then((response) => {
         // And the server sends back the user info
         // back to the client side
-       alert("Post created successfully")
-       setTimeout( ()=>{
-           this.setState({created:true})
-       },1000)
+        console.log(response.data.user[0].role);
+        this.setState({ role: response.data.user[0].role });
 
         // this.setState({ loggedIn:true,userId:response.data.userId[0].id});
         // }
@@ -75,9 +71,6 @@ class CreatePost extends React.Component {
     alert(`Selected file - ${this.fileInput.current.files[0].name}`);
   }
   render() {
-    if(this.state.created===true){
-      return <Redirect to={{ pathname: "/" }}></Redirect>;
-    }
     return (
       <div className="c">
         <div>
