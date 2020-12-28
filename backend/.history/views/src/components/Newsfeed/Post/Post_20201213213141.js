@@ -1,15 +1,13 @@
 import React from 'react'
 import './Post.css'
-
+import './message'
 import { Redirect } from "react-router";
 import { Button, Segment } from "semantic-ui-react";
-
-import LoginModal from '../../Login/LoginModal';
-
+import message from './message';
 const Post = (props) => {
    
   
-   const [ message , setMessage] = React.useState(false)
+   
     
   
     return (
@@ -22,22 +20,13 @@ const Post = (props) => {
           
            
             <Button basic color="blue" onClick={()=>{
-             return  <Redirect to={{ pathname: "/message" ,state:{id: 'asdf'}}}></Redirect>
+                return <Redirect to={{ pathname: "/message" }}></Redirect>;
             }}> 
               Send message
             </Button>
-            <div className="modal" style={ message ? { display:'block'} : {display : 'none'} }>
-          <message />
-          <div className="close">
-          <Button inverted color='red' onClick={(ev)=>{
-            ev.preventDefault()
-            setMessage(false)
-          }}>
-          Close
-          </Button>
-          </div>
-        
-        </div>
+            <div className="modal" style={ this.state.isLoggedIn ? { display:'block'} : {display : 'none'} }>
+                <message/>
+            </div>
         </div>
     )
 }

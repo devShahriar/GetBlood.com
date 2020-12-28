@@ -1,0 +1,9 @@
+.w {
+    z-index: 1;
+    width: 3px;
+   
+    padding: 55px 15px 15px 50px;
+    background-color:rgba(0,0,0,0.85);
+    border-radius: 25px;
+
+}

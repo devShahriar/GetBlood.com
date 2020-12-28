@@ -1,9 +1,9 @@
 import React from 'react'
 import './Post.css'
-
+import './message'
 import { Redirect } from "react-router";
 import { Button, Segment } from "semantic-ui-react";
-
+import message from './message';
 import LoginModal from '../../Login/LoginModal';
 
 const Post = (props) => {

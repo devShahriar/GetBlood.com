@@ -12,7 +12,7 @@ import DonarSignup from './DonarSignup';
 import userSignup from './userSignup';
 import ShowResult from './components/Map/SearchResult/SearchResult'
 import CreatePost from './components/Newsfeed/CreatePost/CreatePost';
-
+import message from './components/Newsfeed/Post/message';
 function App () {
   
     return (
@@ -28,7 +28,7 @@ function App () {
           <Route exact path="/donarS" component={DonarSignup}/>
           <Route exact path="/userS" component={userSignup}/>
           <Route exact path="/create" component={CreatePost}/>
-          
+          <Route exact path="/message" component={message}/>
         </Switch>
         </div>
    )

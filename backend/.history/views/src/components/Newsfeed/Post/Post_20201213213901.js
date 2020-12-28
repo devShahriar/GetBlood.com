@@ -1,11 +1,9 @@
 import React from 'react'
 import './Post.css'
-
+import './message'
 import { Redirect } from "react-router";
 import { Button, Segment } from "semantic-ui-react";
-
-import LoginModal from '../../Login/LoginModal';
-
+import message from './message';
 const Post = (props) => {
    
   
@@ -22,16 +20,16 @@ const Post = (props) => {
           
            
             <Button basic color="blue" onClick={()=>{
-             return  <Redirect to={{ pathname: "/message" ,state:{id: 'asdf'}}}></Redirect>
+               setMessage(true)
             }}> 
               Send message
             </Button>
-            <div className="modal" style={ message ? { display:'block'} : {display : 'none'} }>
-          <message />
+            <div className="modal" style={ this.state.isLoggedIn ? { display:'block'} : {display : 'none'} }>
+          <LoginModal />
           <div className="close">
           <Button inverted color='red' onClick={(ev)=>{
             ev.preventDefault()
-            setMessage(false)
+            this.setState({isLoggedIn:false})
           }}>
           Close
           </Button>

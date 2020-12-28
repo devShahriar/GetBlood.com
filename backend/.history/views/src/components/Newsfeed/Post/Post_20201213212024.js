@@ -1,17 +1,19 @@
 import React from 'react'
 import './Post.css'
-
-import { Redirect } from "react-router";
+import './message'
 import { Button, Segment } from "semantic-ui-react";
-
-import LoginModal from '../../Login/LoginModal';
-
+import message from './message';
 const Post = (props) => {
    
-  
-   const [ message , setMessage] = React.useState(false)
-    
-  
+    const [showM , setShowM] = React.useState(false)
+    const [name, setName] = useState("");
+    const handleSubmit=()=>{
+      
+    }
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        alert(`Submitting Name ${name}`)
+    }
     return (
         <div className='Card'>
             <p style={{textDecoration:'underline'}}>{props.data.user_name}</p>
@@ -22,22 +24,21 @@ const Post = (props) => {
           
            
             <Button basic color="blue" onClick={()=>{
-             return  <Redirect to={{ pathname: "/message" ,state:{id: 'asdf'}}}></Redirect>
+                setShowM(true)
             }}> 
               Send message
             </Button>
-            <div className="modal" style={ message ? { display:'block'} : {display : 'none'} }>
-          <message />
-          <div className="close">
-          <Button inverted color='red' onClick={(ev)=>{
-            ev.preventDefault()
-            setMessage(false)
-          }}>
-          Close
-          </Button>
-          </div>
-        
-        </div>
+            <form onSubmit={handleSubmit}>
+      <label>
+        Frirst Name:
+        <input
+          type="text"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
         </div>
     )
 }

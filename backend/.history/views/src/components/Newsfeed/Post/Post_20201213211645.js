@@ -1,17 +1,18 @@
 import React from 'react'
 import './Post.css'
-
-import { Redirect } from "react-router";
+import './message'
 import { Button, Segment } from "semantic-ui-react";
-
-import LoginModal from '../../Login/LoginModal';
-
+import message from './message';
 const Post = (props) => {
    
-  
-   const [ message , setMessage] = React.useState(false)
-    
-  
+    const [showM , setShowM] = React.useState(false)
+    const [text, setText] = React.useState('') 
+    const handleSubmit=()=>{
+      
+    }
+    const onChangeHandler = event => {
+        setText(event.target.value);
+    };
     return (
         <div className='Card'>
             <p style={{textDecoration:'underline'}}>{props.data.user_name}</p>
@@ -22,22 +23,19 @@ const Post = (props) => {
           
            
             <Button basic color="blue" onClick={()=>{
-             return  <Redirect to={{ pathname: "/message" ,state:{id: 'asdf'}}}></Redirect>
+                setShowM(true)
             }}> 
               Send message
             </Button>
-            <div className="modal" style={ message ? { display:'block'} : {display : 'none'} }>
-          <message />
-          <div className="close">
-          <Button inverted color='red' onClick={(ev)=>{
-            ev.preventDefault()
-            setMessage(false)
-          }}>
-          Close
-          </Button>
-          </div>
-        
-        </div>
+            <form onSubmit={handleSubmit}>
+            <input
+            type="text"
+            name="text"
+            onChange={onChangeHandler} 
+            value={text}
+            style={{width:'400px' , borderRadius:'10px'}}
+            />
+            </form>
         </div>
     )
 }

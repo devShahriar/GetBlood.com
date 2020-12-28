@@ -106,7 +106,7 @@ class CreatePost extends React.Component {
           <Form onSubmit={this.formSubmit}>
             <Form.Field inline>
               <input
-                style={{width:'300px'}}
+                style={{width:'200px'}}
                 type="text"
                 placeholder="Title"
                 name="header"
