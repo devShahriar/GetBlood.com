@@ -42,15 +42,15 @@ exports.validEmail=(req,res,next) =>{
     result.then(
         r=>{
             if(r[0].length>0) {
-                return true
-                /*
+               
+                
                 res.json({
                     error:"email already used"
                 })
-                */
+                
             }else{
-                return false
-              //  res.json({error:""})
+               
+               res.json({error:""})
             }
         }
     )

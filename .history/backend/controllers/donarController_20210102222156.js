@@ -1,5 +1,7 @@
+
 const db = require('../util/db');
 const short = require('shortid')
+const donor = require('../models/Donor');
 
 
 
@@ -14,7 +16,10 @@ exports.registerDonar=(req,res,next)=>{
     const blood_group= req.body.bloodGroup;
     const d ='donor'
    console.log({n,e,p,t,phone,blood_group})
+   const check = checkUserExit(e)
    
+   
+  
     db.execute("insert into donor (donor_id,name,email,phone,password,notification_token,blood_group) values(?,?,?,?,?,?,?)",
     [id,n,e,phone,p,t,blood_group]).then(r=>{
        res.json('success')
@@ -24,47 +29,44 @@ exports.registerDonar=(req,res,next)=>{
       res.json({error:'something went wrong'})
   })
 
-  db.execute("insert into login (id,email,password,role) values (?,?,?,?)",[id,e,p,d]).then(
-     res.json({d:'success'})
-  ).catch(e=>{console.log(e)})
+   db.execute("insert into login (id,email,password,role) values (?,?,?,?)",[id,e,p,d]).then(
+    res.json({d:'success'})
+   ).catch(e=>{console.log(e)})
+   
+
 }
 
 exports.validEmail=(req,res,next) =>{
     const e =req.body.email
-    db.execute("select * from login where email=?",[e])
-    .then(
+   const result = validEmail(e)
+    result.then(
         r=>{
             if(r[0].length>0) {
+               
+                
                 res.json({
                     error:"email already used"
                 })
-
+                
             }else{
-                res.json({error:""})
+               
+               res.json({error:""})
             }
         }
     )
 }
 
+
 exports.checkUser=(req,res,next)=>{
     const e =req.body.email
-    db.execute("select role from login where email=?",[e])
+    const p = req.body.password
+    db.execute("select * from login where email=? and password=?",[e,p])
     .then(
         r=>{
           res.json({
               
-              user:r[0][0]})
+              user:r[0]})
         }
     )
 }
-exports.getToken=(req,res,next)=>{
-    console.log(req.body.blood_group)
-    const e =req.body.blood_group
-    db.execute("select notification_token from donor where blood_group=?",[e])
-    .then(
-        r=>{
-            console.log(r[0][0].notification_token)
-            res.json({ token:r[0][0].notification_token})
-        }
-    )
-}
+

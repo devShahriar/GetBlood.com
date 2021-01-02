@@ -4,16 +4,42 @@ const webpush=require('web-push');
 const dotenv = require('dotenv')
 const signupController = require('../controllers/signup');
 const donar = require('../controllers/donarController')
-
-//
 router.get('/signup' ,signupController.signUp);
-router.post('/register',signupController.registerUser);
+//router.post('/register',signupController.registerUser);
 router.post('/findBy',signupController.findByid);
 router.post('/saveToken',signupController.saveToken)
 router.post('/registerDonar',donar.registerDonar);
 router.post('/validEmail',donar.validEmail)
 router.post('/check',donar.checkUser)
 router.post('/getToken' ,donar.getToken)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //webpush.setVapidDetails(process.env.WEB_PUSH_CONTACT, process.env.PUBLIC_VAPID_KEY, process.env.PRIVATE_VAPID_KEY)
 
 //let subscription

@@ -1,6 +1,5 @@
 const db = require("../util/db");
 const short = require('shortid')
-const user = require('../models/user')
 exports.signUp = (req, res, next) => {
   res.render("login", {
     pageTitle: "444"
@@ -15,9 +14,25 @@ exports.registerUser = (req, res, next) => {
   const p = req.body.password;
   const phone = req.body.phone;
   const u = 'user'
-  console.log();
-  user.save(res,id,n,e,p,phone) 
-
+  console.log(n);
+  try {
+    db.execute("insert into userinfo (id,name,email,password,phone) values(?,?,?,?,?)", [id,n,e,p,phone])
+      .then(r => {
+          res.json({res:'success'})
+      })
+      .catch(err => {
+        console.log(err);
+      
+        res.json({
+          erro:"somethin is wrong"
+      })
+      });
+      db.execute("insert into login (id,name,email,password,role) values (?,?,?,?,?)",[id,n,e,p,u]).then(
+        res.json({d:'success'})
+     ).catch(e=>{console.log(e)})
+  } catch(e){
+      
+  }
 };
 
 

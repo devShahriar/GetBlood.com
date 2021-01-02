@@ -14,7 +14,7 @@ class BloodBank {
         const blood = b;
         db.execute("select distinct name,location,latitude,longitude from blood_bag b inner join blood_bank b1 on b.blood_bank_id=b1.blood_bank_id where blood_group=?;",[blood]).then(
             r=>{
-             // console.log(r)  
+              console.log(r)  
              return cb(r) 
             }
         ).catch(e=>{})

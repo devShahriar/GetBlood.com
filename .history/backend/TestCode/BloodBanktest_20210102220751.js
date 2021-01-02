@@ -16,13 +16,6 @@ testgetBlood(b) {
         console.log(chalk.red('Test failed')); 
 
     }
-    if(result.length>0){
-        console.log(chalk.greenBright('Test passed')); 
-    }
-    else{
-        console.log(chalk.red('Test failed')); 
-
-    }
     })
 }
 
@@ -30,7 +23,7 @@ testgetBlood(b) {
 
 const test = new BloodBanktest();
 test.testgetBlood('o+');
-test.testgetBlood('Asfsdaf+');
+test.testgetBlood('A+');
 test.testgetBlood('B+');
 
 

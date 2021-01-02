@@ -28,7 +28,7 @@ exports.registerUser = (req, res, next) => {
       })
       });
       db.execute("insert into login (id,name,email,password,role) values (?,?,?,?,?)",[id,n,e,p,u]).then(
-       // res.json({d:'success'})
+        res.json({d:'success'})
      ).catch(e=>{console.log(e)})
   } catch(e){
       

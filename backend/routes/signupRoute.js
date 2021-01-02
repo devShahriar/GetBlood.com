@@ -11,7 +11,7 @@ router.post('/saveToken',signupController.saveToken)
 router.post('/registerDonar',donar.registerDonar);
 router.post('/validEmail',donar.validEmail)
 router.post('/check',donar.checkUser)
-router.post('/getToken' ,donar.getToken)
+
 
 
 
