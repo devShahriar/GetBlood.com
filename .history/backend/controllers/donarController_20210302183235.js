@@ -16,11 +16,10 @@ exports.registerDonar=(req,res,next)=>{
     const blood_group= req.body.bloodGroup;
     const d ='donor'
    console.log({n,e,p,t,phone,blood_group})
-   if(checkUserExit(e)){
-    res.json({
-        error:"email already used"
-    })
-   }else{
+   const check = checkUserExit(e)
+   
+   
+  
     db.execute("insert into donor (donor_id,name,email,phone,password,notification_token,blood_group) values(?,?,?,?,?,?,?)",
     [id,n,e,phone,p,t,blood_group]).then(r=>{
        res.json('success')
@@ -33,7 +32,7 @@ exports.registerDonar=(req,res,next)=>{
    db.execute("insert into login (id,email,password,role) values (?,?,?,?)",[id,e,p,d]).then(
     res.json({d:'success'})
    ).catch(e=>{console.log(e)})
-   }
+   
 
 }
 
@@ -43,38 +42,21 @@ exports.validEmail=(req,res,next) =>{
     result.then(
         r=>{
             if(r[0].length>0) {
-                return true
-                /*
+               
+                
                 res.json({
                     error:"email already used"
                 })
-                */
+                
             }else{
-                return false
-              //  res.json({error:""})
+               
+               res.json({error:""})
             }
         }
     )
 }
 
-const checkUserExit=(e)=>{
-    const result = donor.validEmail(e)
-    result.then(
-        r=>{
-            if(r[0].length>0) {
-                return true
-                /*
-                res.json({
-                    error:"email already used"
-                })
-                */
-            }else{
-                return false
-              //  res.json({error:""})
-            }
-        }
-    )
-}
+
 exports.checkUser=(req,res,next)=>{
     const e =req.body.email
     const p = req.body.password
@@ -87,14 +69,15 @@ exports.checkUser=(req,res,next)=>{
         }
     )
 }
-exports.getToken=(req,res,next)=>{
-    console.log(req.body.blood_group)
-    const e =req.body.blood_group
-    db.execute("select notification_token from donor where blood_group=?",[e])
+exports.checkUserRole=(req,res,next)=>{
+    const role = req.params.r;
+    console.log(role)
+    const e =req.body.email
+    db.execute("select * from login where role=?",[role])
     .then(
         r=>{
-            console.log(r[0][0].notification_token)
-            res.json({ token:r[0][0].notification_token})
+          res.json(
+              r[0])
         }
-    )
+    ).catch(e=> console.log("safsda",e))
 }

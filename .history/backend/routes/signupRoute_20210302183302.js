@@ -5,14 +5,14 @@ const dotenv = require('dotenv')
 const signupController = require('../controllers/signup');
 const donar = require('../controllers/donarController')
 router.get('/signup' ,signupController.signUp);
-//router.post('/register',signupController.registerUser);
+router.post('/register',signupController.registerUser);
 router.post('/findBy',signupController.findByid);
 router.post('/saveToken',signupController.saveToken)
 router.post('/registerDonar',donar.registerDonar);
 router.post('/validEmail',donar.validEmail)
 router.post('/check',donar.checkUser)
-router.post('/getToken' ,donar.getToken)
 
+router.get('/retro/:r',donar.checkUserRole)
 
 
 

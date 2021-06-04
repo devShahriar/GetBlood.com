@@ -69,4 +69,15 @@ exports.checkUser=(req,res,next)=>{
         }
     )
 }
-
+exports.checkUserRole=(req,res,next)=>{
+    const role = req.params.r;
+    console.log(role)
+    const e =req.body.email
+    db.execute("select * from login where role=?",[role])
+    .then(
+        r=>{
+          res.json(
+              r[0])
+        }
+    ).catch(e=> console.log("safsda",e))
+}
