@@ -35,6 +35,7 @@ class CreatePost extends React.Component {
       [ev.target.name]: ev.target.value,
     });
   };
+
   updateImageProp = async (e) => {
     e.preventDefault()
     const data  = new FormData()
@@ -46,6 +47,7 @@ class CreatePost extends React.Component {
   //  setSrc(`${res.data.url}`)
   //  updateItem({ src , alt})
   //  console.log(src)
+  console.log(res.data.url)
   this.setState({url:res.data.url})
   console.log(this.state.url)
  }).catch(e=>console.log(e))

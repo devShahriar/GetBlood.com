@@ -37,9 +37,8 @@ import { resolveInclude } from "ejs";
 
   componentDidMount() {
     this.setState({isLoggedIn:this.props.isLoggedIn})
-
-    
   }
+
   onChange = (ev) => {
     this.setState({
       [ev.target.name]: ev.target.value,
@@ -62,6 +61,7 @@ import { resolveInclude } from "ejs";
       }).then((response) => {
         // And the server sends back the user info
         // back to the client side
+        console.log(response)
         console.log(response.data.user[0].role);
         this.setState({ role: response.data.user[0].role });
         localStorage.setItem('auth',JSON.stringify(response.data.user[0])) 

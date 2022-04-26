@@ -65,10 +65,12 @@ exports.checkUser=(req,res,next)=>{
         r=>{
           res.json({
               
-              user:r[0]})
+              user :  r[0]})
         }
     )
 }
+
+
 exports.checkUserRole=(req,res,next)=>{
     const role = req.params.r;
     console.log(role)
